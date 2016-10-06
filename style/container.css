@@ -1,0 +1,46 @@
+body {
+  height: 100%;
+  direction: rtl;
+  background-color: ghostwhite;
+}
+
+html {
+  height: 100%
+}
+
+.spinner-container {
+  position: fixed;
+  top: 45%;
+  left: 44%;
+}
+
+.container
+{
+  max-width: none;
+  width: 90% !important;
+  height:100%;
+  overflow: hidden;
+}
+
+
+@media (min-width: 993px)
+{
+    .container
+    {
+        width: 90%
+
+    }
+}
+
+@media (max-width: 460px)
+{
+    .container
+    {
+      width: 100% !important;
+    }
+}
+
+.sub-container
+{
+  height: 100%;
+}

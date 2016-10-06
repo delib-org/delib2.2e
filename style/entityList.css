@@ -1,0 +1,61 @@
+
+
+/* Entity List (for groups, questions etc..)*/
+.entity-ul{
+  margin-top: -7px;
+  overflow: scroll;
+  height: calc(100% - 120px);
+}
+
+/*pull avatar right on list*/
+.material-icons {
+  position: inherit !important;
+}
+
+.collection-item {
+  display: flex;
+  margin-right: 5px !important;
+}
+
+/* pull public icon to left */
+.left-icon {
+  position: initial !important;
+}
+
+.left-icon-container {
+  position: absolute !important;
+  left: 15px;
+}
+
+.avatar-container {
+  margin-left: 15px;
+  margin-right: -10px;
+}
+
+.circle-clipper {
+  position: absolute !important;
+}
+
+.entity-li {
+  margin-bottom: 4px !important;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 1px 0 rgba(0,0,0,0.12);
+  right: -5px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.entity-li:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+@media (max-width: 460px)
+{
+  .entity-ul {
+    height: calc(100% - 155px);
+  }
+}
+
+
+::-webkit-scrollbar {
+    display: none;
+}
