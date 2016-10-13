@@ -2,7 +2,8 @@ import initialState from './initialState';
 import {
   FETCH_GROUPS,
   LOADING_GROUPS,
-  FETCH_GROUPS_SUCCESS
+  FETCH_GROUPS_SUCCESS,
+  UPDATE_GROUP
  } from '../constants';
 
 export default function(state = initialState.groups, action) {
@@ -19,6 +20,8 @@ export default function(state = initialState.groups, action) {
       return {...state, loading: true};
     case FETCH_GROUPS_SUCCESS:
       return {...state, loading: false};
+    case UPDATE_GROUP:
+      return {...state, ...action.payload};
     default:
       return state;
   }

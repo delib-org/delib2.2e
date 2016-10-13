@@ -8,8 +8,8 @@ import { Route, IndexRoute } from 'react-router';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={GroupsMain} />
-    <Route path="/group/:uid" component = {EntitiesIndex}/>
-    <Route path="/topic/:uid" component = {EntitiesIndex}/>
-    <Route path="/question/:uid" component = {EntitiesIndex}/>
+    <Route path="/groups/:uid" component = {EntitiesIndex}/>
+    <Route path="/topics/:uid" component = {EntitiesIndex}/>
+    <Route path="/questions/:uid" component = {EntitiesIndex}/>
   </Route>
 );

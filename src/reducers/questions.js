@@ -2,7 +2,8 @@ import initialState from './initialState';
 import {
   FETCH_QUESTIONS,
   LOADING_QUESTIONS,
-  FETCH_QUESTIONS_SUCCESS
+  FETCH_QUESTIONS_SUCCESS,
+  UPDATE_QUESTION
  } from '../constants';
 
 export default function(state = initialState.questions, action) {
@@ -19,6 +20,8 @@ export default function(state = initialState.questions, action) {
       return {...state, loading: true};
     case FETCH_QUESTIONS_SUCCESS:
       return {...state, loading: false};
+    case UPDATE_QUESTION:
+      return {...state, ...action.payload};
     default:
       return state;
   }
