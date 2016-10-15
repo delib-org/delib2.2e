@@ -1,45 +1,14 @@
-import { listenToGroupsUpdates, listenToActiveGroup } from './groups';
-import { listenToTopicsUpdates } from './topics';
-import { listenToQuestionsUpdates } from './questions';
-import { SET_ACTIVE_ENTITY } from '../constants';
 import _ from 'lodash';
 import {DB} from '../firebase/firebase';
 import {
-  FETCH_GROUPS,
-  LOADING_GROUPS,
-  FETCH_GROUPS_SUCCESS,
   UPDATE_ACTIVE_ENTITY,
   UPDATE_ENTITY,
   LOADING_ACTIVE_ENTITY,
-  LOADING_ACTIVE_ENTITY_FINISHED
+  LOADING_ACTIVE_ENTITY_FINISHED,
+  CLEAN_QUESTIONS,
+  CLEAN_GROUPS
   } from '../constants';
 
-
-//Start listen to all entities changes.
-export function listenToEntitiesUpdates() {
-  return (dispatch) => {
-    dispatch(listenToGroupsUpdates());
-    dispatch(listenToTopicsUpdates());
-    dispatch(listenToQuestionsUpdates());
-  }
-}
-
-// set active entity by uid (comes from router)
-export function setActiveEntity(entityUid) {
-  return (dispatch, getState) => {
-    const allEntities = {
-      ...getState().groups.allGroups,
-      ...getState().topics.allTopics,
-      ...getState().questions.allQuestions
-    };
-
-
-    dispatch( {
-      type: SET_ACTIVE_ENTITY,
-      payload: !allEntities[entityUid] ? {uid:""} : allEntities[entityUid] //if uid is ud, just put active entity with uid ""
-    });
-  }
-}
 
 export function updateActiveEntity(payload) {
   return {
@@ -77,8 +46,8 @@ export function listenToActiveEntity(entityType, entityUid) {
       let subEntitiesArray = _.values(
         _.mapKeys(activeEntity.subEntities, function(value, key) { value.uid = key; return key; })
       );
-
       activeEntity.subEntities = _.sortBy(subEntitiesArray, (o)=>o.dateAdded);
+      activeEntity.uid = entityUid;
 
       dispatch(updateActiveEntity(activeEntity));
       dispatch(loadingActiveEntityFinished());
@@ -87,7 +56,7 @@ export function listenToActiveEntity(entityType, entityUid) {
 }
 
 export function listenToEntitesByList(entities) {
-  return (dispatch) =>
+  return (dispatch) => {
     entities.forEach(({entityType, uid}) => {
       DB.child(entityType).child(uid).on("value", (snapshot) => {
         if(snapshot.val()) {
@@ -96,11 +65,23 @@ export function listenToEntitesByList(entities) {
       });
     });
   }
+}
 
 export function stopListenToEntitiesByList(entities) {
   return (dispatch) => {
     entities.forEach(({entityType, uid}) => {
       DB.child(entityType).child(uid).off('value');
+    });
+  }
+}
+
+export function clearAllEntities() {
+  return (dispatch) => {
+    dispatch({
+      type: CLEAN_GROUPS
+    });
+    dispatch({
+      type: CLEAN_QUESTIONS
     });
   }
 }

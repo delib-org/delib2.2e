@@ -1,31 +1,36 @@
 //Groups Actions
-export const FETCH_GROUPS = "FETCH_GROUPS";
-export const LOADING_GROUPS = "LOADING_GROUPS";
-export const FETCH_GROUPS_SUCCESS = "FETCH_GROUPS_SUCCESS";
 export const UPDATE_GROUP = "UPDATE_GROUP";
-
-//Topics Actions
-export const FETCH_TOPICS = "FETCH_TOPICS";
-export const LOADING_TOPICS = "LOADING_TOPICS";
-export const FETCH_TOPICS_SUCCESS = "FETCH_TOPICS_SUCCESS";
+export const CLEAN_GROUPS = "CLEAN_GROUPS";
 
 //Questions Actions
-export const FETCH_QUESTIONS = "FETCH_QUESTIONS";
-export const LOADING_QUESTIONS = "LOADING_QUESTIONS";
-export const FETCH_QUESTIONS_SUCCESS = "FETCH_QUESTIONS_SUCCESS";
 export const UPDATE_QUESTION = "UPDATE_QUESTION";
+export const CLEAN_QUESTIONS = "CLEAN_QUESTIONS";
 
 //General entities actions
-export const SET_ACTIVE_ENTITY = "SET_ACTIVE_ENTITY";
 export const UPDATE_ACTIVE_ENTITY = "UPDATE_ACTIVE_ENTITY";
 export const LOADING_ACTIVE_ENTITY =  "LOADING_ACTIVE_ENTITY";
 export const LOADING_ACTIVE_ENTITY_FINISHED =  "LOADING_ACTIVE_ENTITY_FINISHED";
 
-// view configuration (where to link for each entity and what avatar to put)
+export const UPDATE_ENTITY = {
+  groups: UPDATE_GROUP,
+  questions: UPDATE_QUESTION
+}
+
+// entity List componenet
+export const SCROLL_UP = "SCROLL_UP";
+export const SCROLL_DOWN = "SCROLL_DOWN";
+export const resetLazyLoadState = {
+  lastLoadedEntityIdx: 0,
+  scrollDownLoadPosition: 756,
+  scrollUpLoadPosition: 0,
+  numberToLoad: 9,
+  elementsToLoadHeight: 756,
+  currLoadedSubEntities: []
+}
 export const entityListViewConfig = {
   groups: {
     avatar: "group",
-    linkTo: "/group/"
+    linkTo: "/groups/"
   },
   topic: {
     avatar: "folder_open",
@@ -36,8 +41,3 @@ export const entityListViewConfig = {
     linkTo: "#"
   }
 };
-
-export const UPDATE_ENTITY = {
-  groups: UPDATE_GROUP,
-  questions: UPDATE_QUESTION
-}

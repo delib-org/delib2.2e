@@ -1,6 +1,6 @@
 import EntityList from '../components/entityList';
 import SubEntitiesSelector from '../selectors/subEntitiesSelector';
-import { listenToEntitesByList, stopListenToEntitiesByList } from '../actions/entities';
+import { listenToEntitesByList, stopListenToEntitiesByList, clearAllEntities } from '../actions/entities';
 import { connect } from 'react-redux';
 
 //set all sub entites of the active entity as props, also set active entity as props
@@ -11,4 +11,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {listenToEntitesByList, stopListenToEntitiesByList})(EntityList);
+export default connect(mapStateToProps, {listenToEntitesByList, stopListenToEntitiesByList, clearAllEntities})(EntityList);

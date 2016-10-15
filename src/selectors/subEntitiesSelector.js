@@ -9,8 +9,8 @@ const questionsSelector = state => state.questions;
 const getAllSubEntities = (groups, questions) => {
   const groupsArry = _.values(groups);
   const questionsArry = _.values(questions);
-  
-  return [...groupsArry, ...questionsArry];
+
+  return _.sortBy([...groupsArry, ...questionsArry], (o) => o.dateAdded );
 }
 
 export default createSelector (
