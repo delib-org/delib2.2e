@@ -7,7 +7,6 @@ import { entityListViewConfig,
          SCROLL_DOWN
        } from '../constants';
 
-
 class EntityList extends Component
 {
   // get access to router context
@@ -40,7 +39,6 @@ class EntityList extends Component
       return subEntitiesToLoad;
     }
   }
-
 
   listenToNextSubEntitiesByScroll(scrollType, subEntities) {
     const lazyLoadState = this.lazyLoadState;
@@ -116,7 +114,6 @@ class EntityList extends Component
     }
   }
 
-
   componentWillUpdate() {
     $("#entity-list").scroll(this.handleSrollChange.bind(this));
   }
@@ -129,6 +126,5 @@ class EntityList extends Component
     )
   }
 }
-
 
 export default EntityList;

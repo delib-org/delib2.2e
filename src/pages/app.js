@@ -14,7 +14,6 @@ export default class App extends Component {
     return (linkPath == "/") ? "mainpage" : props.params.uid;
   }
 
-
   componentWillMount() {
     this.props.listenToActiveEntity(this.getEntityTypeFromLinkPath(this.props), this.getEntityUidFromLinkPath(this.props));
   }

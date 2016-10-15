@@ -5,7 +5,6 @@ import _ from 'lodash';
 const groupsSelector = state => state.groups;
 const questionsSelector = state => state.questions;
 
-
 const getAllSubEntities = (groups, questions) => {
   const groupsArry = _.values(groups);
   const questionsArry = _.values(questions);
