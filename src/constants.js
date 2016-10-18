@@ -10,11 +10,14 @@ export const CLEAN_QUESTIONS = "CLEAN_QUESTIONS";
 export const UPDATE_ACTIVE_ENTITY = "UPDATE_ACTIVE_ENTITY";
 export const LOADING_ACTIVE_ENTITY =  "LOADING_ACTIVE_ENTITY";
 export const LOADING_ACTIVE_ENTITY_FINISHED =  "LOADING_ACTIVE_ENTITY_FINISHED";
-
 export const UPDATE_ENTITY = {
   groups: UPDATE_GROUP,
   questions: UPDATE_QUESTION
 }
+
+//firebase loading actions
+export const FIREBASE_LOADING = "FIREBASE_LOADING";
+export const FIREBASE_LOADING_FINISHED = "FIREBASE_LOADING_FINISHED";
 
 // entity List componenet
 export const SCROLL_UP = "SCROLL_UP";

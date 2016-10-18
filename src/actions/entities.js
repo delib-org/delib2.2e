@@ -9,6 +9,8 @@ import {
   CLEAN_GROUPS
   } from '../constants';
 
+import {firebaseLoading, firebaseLoadingFinished} from './firebaseLoading';
+
 
 export function updateActiveEntity(payload) {
   return {
@@ -40,7 +42,7 @@ export function updateEntity(entityType, entityUid, payload) {
 
 export function listenToActiveEntity(entityType, entityUid) {
   return (dispatch) => {
-    dispatch(loadingActiveEntity());
+    dispatch(firebaseLoading("ACTIVE_ENTITY"));
     DB.child(entityType).child(entityUid).on("value", (snapshot) => {
       let activeEntity = snapshot.val();
       let subEntitiesArray = _.values(
@@ -50,18 +52,21 @@ export function listenToActiveEntity(entityType, entityUid) {
       activeEntity.uid = entityUid;
 
       dispatch(updateActiveEntity(activeEntity));
-      dispatch(loadingActiveEntityFinished());
+      dispatch(firebaseLoadingFinished());
     });
   }
 }
 
 export function listenToEntitesByList(entities) {
   return (dispatch) => {
+    if(entities.length != 0)
+      dispatch(firebaseLoading("SUB_ENTITIES"));
     entities.forEach(({entityType, uid}) => {
       DB.child(entityType).child(uid).on("value", (snapshot) => {
         if(snapshot.val()) {
           dispatch(updateEntity(entityType, uid, {[uid]: snapshot.val()}))
         }
+        dispatch(firebaseLoadingFinished());
       });
     });
   }

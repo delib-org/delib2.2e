@@ -3,8 +3,14 @@ export default {
   activeEntity: {
     isLoading: true,
     entity: {}
-  }, // for example {uid: "-ABCDEFG", title: "ab", description: "abc"...}
-
+  },
   groups: {},
-  questions: {}
+  questions: {},
+
+  firebaseLoading: {
+    type: "ACTIVE_ENTITY",
+    isLoading: true
+  }
+
+
 }

@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 function mapStateToProps(state) {
   return {
     activeEntity: state.activeEntity,
-    allSubEntities: SubEntitiesSelector(state)
+    allSubEntities: SubEntitiesSelector(state),
+    firebaseLoading: state.firebaseLoading
   };
 }
 
