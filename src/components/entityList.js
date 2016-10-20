@@ -88,7 +88,7 @@ class EntityList extends Component
     if(this.props.firebaseLoading.type == "SUB_ENTITIES" && this.props.firebaseLoading.isLoading && allSubEntities.length == 0)
       return <Spinner/>
 
-    //if its not loading but the array is still emptey, then there are no sub entities for this particular active entity
+    //if its not loading but the array is still empty, then there are no sub entities for this particular active entity
     if(allSubEntities.length == 0)
       return (<h4>אין נתונים ביישות - {this.props.activeEntity.title}</h4>);
 
