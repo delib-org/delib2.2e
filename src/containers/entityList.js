@@ -1,14 +1,15 @@
 import EntityList from '../components/entityList';
 import SubEntitiesSelector from '../selectors/subEntitiesSelector';
-import { listenToEntitiesUpdates, setActiveEntity } from '../actions/entities';
+import { listenToEntitesByList, stopListenToEntitiesByList, clearAllEntities } from '../actions/entities';
 import { connect } from 'react-redux';
 
 //set all sub entites of the active entity as props, also set active entity as props
 function mapStateToProps(state) {
   return {
-    entities: SubEntitiesSelector(state),
-    activeEntity: state.activeEntity
+    activeEntity: state.activeEntity,
+    allSubEntities: SubEntitiesSelector(state),
+    firebaseLoading: state.firebaseLoading
   };
 }
 
-export default connect(mapStateToProps, {listenToEntitiesUpdates, setActiveEntity})(EntityList);
+export default connect(mapStateToProps, {listenToEntitesByList, stopListenToEntitiesByList, clearAllEntities})(EntityList);

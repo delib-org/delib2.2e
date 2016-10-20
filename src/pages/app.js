@@ -1,24 +1,43 @@
 import React, { Component } from 'react';
-import GroupsMain from './groupsMain';
 import TopNavBar from '../components/topNavBar';
 import Spinner from '../components/spinner';
 
+
 export default class App extends Component {
+  //return entity type by link bar path (exmple /groups/-ABCDEFG123 will return groups)
+  getEntityTypeFromLinkPath(linkPath) {
+    const linkPath = props.location.pathname;
+    return (linkPath == "/") ? "groups" : linkPath.substr(linkPath.indexOf("/")+1, linkPath.indexOf("/-")-1);
+  }
+
+  /*gets the props (either from this.props or from nextProps) and returns the uid depends on the pathname (if its / just return default uid)
+    else, take the uid from props.params*/
+  getEntityUidFromLinkPath(props) {
+    const linkPath = props.location.pathname;
+    return (linkPath == "/") ? "mainpage" : props.params.uid;
+  }
+
+  //check if firebase is currently loading an active entity
+  isActiveEntityLoading(firebaseLoading) {
+    return (firebaseLoading.type == "ACTIVE_ENTITY" && firebaseLoading.isLoading);
+  }
+  //on initial mount, listen to the active entity by link bar
   componentWillMount() {
-    //when this main component is about to render, start listening to all firebase data changes
-    this.props.listenToEntitiesUpdates();
+    this.props.listenToActiveEntity(this.getEntityTypeFromLinkPath(this.props.location.pathname), this.getEntityUidFromLinkPath(this.props));
   }
+
+  //check if the active entity has changed, if it did, then start listen to the new one.
   componentWillReceiveProps(nextProps) {
-    //once the firebase data finished to loading, set the activeEntity (by the router parameter)
-    const routerEntityUid = nextProps.params.uid;
-    if(!nextProps.loadingEntities && this.props.activeEntityUid != routerEntityUid)
-      this.props.setActiveEntity(routerEntityUid);
+    const entityUid = this.getEntityUidFromLinkPath(nextProps);
+    if(entityUid != nextProps.activeEntityUid && !this.isActiveEntityLoading(nextProps.firebaseLoading))
+      this.props.listenToActiveEntity(this.getEntityTypeFromLinkPath(nextProps.location.pathname), entityUid);
   }
+
   render() {
     return (
       <div className = "sub-container">
         <TopNavBar/>
-        {this.props.loadingEntities ? <Spinner/> : this.props.children }
+        {this.isActiveEntityLoading(this.props.firebaseLoading) ? <Spinner/> : this.props.children}
       </div>
     );
   }
