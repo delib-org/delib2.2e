@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import GroupsReducer from './groups';
 import QuestionsReducer from './questions';
 import ActiveEntityReducer from './activeEntity';
-import firebaseLoadingReducer from './firebaseLoading';
+import FirebaseLoadingReducer from './firebaseLoading';
 
 const rootReducer = combineReducers({
   activeEntity: ActiveEntityReducer,
