@@ -7,13 +7,13 @@ import routes from './routes';
 import App from './pages/app';
 import reducers from './reducers';
 import ReduxThunk from 'redux-thunk'
-import promiseMiddleware from 'redux-promise';
+import ReduxPromise from 'redux-promise';
 
 // const createStoreWithMiddleware = applyMiddleware(ReduxThunk, promiseMiddleware)(createStore);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
  const store = createStore(reducers, composeEnhancers(
-   applyMiddleware(ReduxThunk, promiseMiddleware)
+   applyMiddleware(ReduxThunk, ReduxPromise)
  ));
 
 ReactDOM.render(
