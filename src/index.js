@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Router, browserHistory } from 'react-router';
 import routes from './routes';
-import App from './pages/app';
+import App from './views/pages/P_app';
 import reducers from './reducers';
-import ReduxThunk from 'redux-thunk'
+import ReduxThunk from 'redux-thunk';
 import ReduxPromise from 'redux-promise';
 
 // const createStoreWithMiddleware = applyMiddleware(ReduxThunk, promiseMiddleware)(createStore);

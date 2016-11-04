@@ -9,7 +9,7 @@ import {
   CLEAN_GROUPS
   } from '../constants';
 
-import {firebaseLoading, firebaseLoadingFinished} from './firebaseLoading';
+import {firebaseLoading, firebaseLoadingFinished} from './AC_firebaseLoading';
 
 
 export function updateActiveEntity(payload) {

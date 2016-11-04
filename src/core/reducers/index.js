@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import GroupsReducer from './groups';
-import QuestionsReducer from './questions';
-import ActiveEntityReducer from './activeEntity';
-import firebaseLoadingReducer from './fireBaseLoading';
+import GroupsReducer from './R_groups';
+import QuestionsReducer from './R_questions';
+import ActiveEntityReducer from './R_activeEntity';
+import firebaseLoadingReducer from './R_fireBaseLoading';
 
 const rootReducer = combineReducers({
   activeEntity: ActiveEntityReducer,

@@ -1,6 +1,6 @@
 import React from 'react';
-import EntityList from '../containers/entityList';
-import FooterNavBar from '../components/footerNavBar';
+import EntityList from '../containers/CNT_entityList';
+import FooterNavBar from '../components/CMP_footerNavBar';
 
 
 export default (props) => {
