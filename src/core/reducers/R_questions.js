@@ -2,7 +2,7 @@ import initialState from './initialState';
 import {
   UPDATE_QUESTION,
   CLEAN_QUESTIONS
- } from '../constants';
+ } from '../../constants';
 
 export default function(state = initialState.questions, action) {
   switch(action.type) {

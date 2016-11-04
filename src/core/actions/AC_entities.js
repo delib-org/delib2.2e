@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {DB} from '../firebase/firebase';
+import {DB} from '../../firebase/firebase';
 import {
   UPDATE_ACTIVE_ENTITY,
   UPDATE_ENTITY,
@@ -7,9 +7,9 @@ import {
   LOADING_ACTIVE_ENTITY_FINISHED,
   CLEAN_QUESTIONS,
   CLEAN_GROUPS
-  } from '../constants';
+  } from '../../constants';
 
-import {firebaseLoading, firebaseLoadingFinished} from './firebaseLoading';
+import {firebaseLoading, firebaseLoadingFinished} from './AC_firebaseLoading';
 
 
 export function updateActiveEntity(payload) {

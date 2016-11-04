@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import TopNavBar from '../components/topNavBar';
-import Spinner from '../components/spinner';
+import TopNavBar from '../components/CMP_topNavBar';
+import Spinner from '../../views/components/CMP_spinner';
 
 
 export default class App extends Component {
   //return entity type by link bar path (exmple /groups/-ABCDEFG123 will return groups)
   getEntityTypeFromLinkPath(linkPath) {
-    const linkPath = props.location.pathname;
     return (linkPath == "/") ? "groups" : linkPath.substr(linkPath.indexOf("/")+1, linkPath.indexOf("/-")-1);
   }
 
@@ -21,6 +20,7 @@ export default class App extends Component {
   isActiveEntityLoading(firebaseLoading) {
     return (firebaseLoading.type == "ACTIVE_ENTITY" && firebaseLoading.isLoading);
   }
+
   //on initial mount, listen to the active entity by link bar
   componentWillMount() {
     this.props.listenToActiveEntity(this.getEntityTypeFromLinkPath(this.props.location.pathname), this.getEntityUidFromLinkPath(this.props));

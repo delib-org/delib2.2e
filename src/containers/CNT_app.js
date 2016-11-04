@@ -1,7 +1,7 @@
 import React from 'react';
-import App from '../pages/app'
+import App from '../views/pages/P_app'
 import { connect } from 'react-redux';
-import { listenToActiveEntity } from '../actions/entities';
+import { listenToActiveEntity } from '../core/actions/AC_entities';
 
 //set loading entites state, and active entity uid as props
 function mapStateToProps(state) {

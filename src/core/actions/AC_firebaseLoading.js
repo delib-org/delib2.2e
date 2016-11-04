@@ -2,7 +2,7 @@ import _ from 'lodash';
 import {
   FIREBASE_LOADING,
   FIREBASE_LOADING_FINISHED
-  } from '../constants';
+  } from '../../constants';
 
 
 export function firebaseLoading(loadingType) {

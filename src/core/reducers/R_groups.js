@@ -2,7 +2,7 @@ import initialState from './initialState';
 import {
   UPDATE_GROUP,
   CLEAN_GROUPS
- } from '../constants';
+ } from '../../constants';
 
 export default function(state = initialState.groups, action) {
   switch(action.type) {

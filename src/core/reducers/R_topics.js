@@ -3,7 +3,7 @@ import {
   FETCH_TOPICS,
   LOADING_TOPICS,
   FETCH_TOPICS_SUCCESS
- } from '../constants';
+ } from '../../constants';
 
 export default function(state = initialState.topics, action) {
   switch(action.type) {

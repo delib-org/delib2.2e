@@ -2,7 +2,7 @@ import initialState from './initialState';
 import {
   FIREBASE_LOADING,
   FIREBASE_LOADING_FINISHED
- } from '../constants';
+ } from '../../constants';
 
 export default function(state = initialState.firebaseLoading, action) {
   switch(action.type) {
