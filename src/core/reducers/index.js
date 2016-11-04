@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   activeEntity: ActiveEntityReducer,
   groups: GroupsReducer,
   questions: QuestionsReducer,
-  fireBaseLoading: firebaseLoadingReducer
+  firebaseLoading: firebaseLoadingReducer
 });
 
 export default rootReducer;
