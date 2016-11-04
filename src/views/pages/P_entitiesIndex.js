@@ -1,5 +1,5 @@
 import React from 'react';
-import EntityList from '../containers/CNT_entityList';
+import EntityList from '../../containers/CNT_entityList';
 import FooterNavBar from '../components/CMP_footerNavBar';
 
 //will contain a different footer nav

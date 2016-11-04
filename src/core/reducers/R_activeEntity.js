@@ -1,7 +1,7 @@
 import initialState from './initialState';
 import { UPDATE_ACTIVE_ENTITY,
          LOADING_ACTIVE_ENTITY,
-         LOADING_ACTIVE_ENTITY_FINISHED} from '../constants';
+         LOADING_ACTIVE_ENTITY_FINISHED} from '../../constants';
 
 //return the active entity that comes from the action to the state
 export default function(state = initialState.activeEntity, action) {

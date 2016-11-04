@@ -1,5 +1,5 @@
 import App from './containers/CNT_app';
-import EntitiesIndex from './pages/P_entitiesIndex';
+import EntitiesIndex from './views/pages/P_entitiesIndex';
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
