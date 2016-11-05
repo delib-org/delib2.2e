@@ -6,14 +6,8 @@ import Spinner from '../../views/components/CMP_spinner';
 export default class App extends Component {
   //return entity type by link bar path (exmple /groups/-ABCDEFG123 will return groups)
   getEntityTypeFromLinkPath(linkPath) {
-    return (linkPath == "/") ? "groups" : linkPath.substr(linkPath.indexOf("/")+1, linkPath.indexOf("/-")-1);
-  }
-
-  /*gets the props (either from this.props or from nextProps) and returns the uid depends on the pathname (if its / just return default uid)
-    else, take the uid from props.params*/
-  getEntityUidFromLinkPath(props) {
-    const linkPath = props.location.pathname;
-    return (linkPath == "/") ? "mainpage" : props.params.uid;
+    const entityType =  linkPath.substr(linkPath.indexOf("/")+1, linkPath.indexOf("/-")-1);
+    return (entityType == "") ? "groups" : entityType;
   }
 
   //check if firebase is currently loading an active entity
@@ -23,12 +17,13 @@ export default class App extends Component {
 
   //on initial mount, listen to the active entity by link bar
   componentWillMount() {
-    this.props.listenToActiveEntity(this.getEntityTypeFromLinkPath(this.props.location.pathname), this.getEntityUidFromLinkPath(this.props));
+    const entityUid = (this.props.params.uid) ? this.props.params.uid : "mainpage";
+    this.props.listenToActiveEntity(this.getEntityTypeFromLinkPath(this.props.location.pathname), entityUid);
   }
 
   //check if the active entity has changed, if it did, then start listen to the new one.
   componentWillReceiveProps(nextProps) {
-    const entityUid = this.getEntityUidFromLinkPath(nextProps);
+    const entityUid = (nextProps.params.uid) ? nextProps.params.uid : "mainpage"; 
     if(entityUid != nextProps.activeEntityUid && !this.isActiveEntityLoading(nextProps.firebaseLoading))
       this.props.listenToActiveEntity(this.getEntityTypeFromLinkPath(nextProps.location.pathname), entityUid);
   }
