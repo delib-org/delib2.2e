@@ -23,7 +23,7 @@ export default class App extends Component {
 
   //check if the active entity has changed, if it did, then start listen to the new one.
   componentWillReceiveProps(nextProps) {
-    const entityUid = (nextProps.params.uid) ? nextProps.params.uid : "mainpage"; 
+    const entityUid = (nextProps.params.uid) ? nextProps.params.uid : "mainpage";
     if(entityUid != nextProps.activeEntityUid && !this.isActiveEntityLoading(nextProps.firebaseLoading))
       this.props.listenToActiveEntity(this.getEntityTypeFromLinkPath(nextProps.location.pathname), entityUid);
   }
@@ -32,8 +32,10 @@ export default class App extends Component {
     return (
       <div className = "sub-container">
         <TopNavBar/>
-        {this.isActiveEntityLoading(this.props.firebaseLoading) ? <Spinner/> : this.props.children}
+        {this.props.children}
       </div>
     );
   }
 }
+
+// {this.isActiveEntityLoading(this.props.firebaseLoading) ? <Spinner/> : this.props.children}
