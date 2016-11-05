@@ -1,0 +1,15 @@
+.message-row {
+  margin-bottom: 0px;
+}
+
+.message-bubble {
+  padding: 10px;
+}
+
+.left-message-bubble {
+  border-radius: 15px 30px 30px 45px;
+}
+
+.right-message-bubble {
+  border-radius: 30px 15px 45px 30px;
+}
