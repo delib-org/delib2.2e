@@ -10,7 +10,7 @@ export default (props) => {
             <input id="icon_prefix" type="text" className="validate"/>
             <label htmlFor="icon_prefix" className="center-align">כתוב משהו...</label>
           </div>
-          <div className="btn-send col s2 push-s10 m1 push-m11 l1 push-l11 red lighten-2 waves-effect waves-light">
+          <div className="btn-send col s2 push-s10 m1 push-m11 l1 push-l11 waves-effect waves-light">
             <li className="material-icons white-text center-align">mode_edit</li>
           </div>
         </div>

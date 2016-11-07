@@ -9,6 +9,11 @@
 
 .message-bubble {
   padding: 10px;
+  background-color: #28c6d7;
+}
+
+.label {
+  color: #0a545c;
 }
 
 .left-message-bubble {
@@ -34,4 +39,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #28c6d7;
 }
