@@ -1,0 +1,20 @@
+.footer {
+  width: 90%;
+  position: fixed;
+  left: 5%;
+  bottom: 0;
+
+}
+
+@media (max-width: 460px)
+{
+    .footer
+    {
+      width: 100%;
+      left: 0%;
+    }
+}
+
+.footer-nav-item {
+  width: 25%;
+}
