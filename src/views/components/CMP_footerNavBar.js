@@ -2,7 +2,7 @@ import React from 'react';
 
 const FooterNavBar = (props) => {
   return(
-        <nav className="footer-nav red">
+        <nav className="footer red">
           <div className="nav-wrapper">
             <ul>
               <li className="footer-nav-item"><a href="#">Feed</a></li>
