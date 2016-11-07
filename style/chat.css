@@ -1,6 +1,7 @@
 .messages-window {
   overflow: scroll;
   height: calc(100% - 143px);
+  margin-top: -6px;
 }
 .message-row {
   margin-bottom: 0px;

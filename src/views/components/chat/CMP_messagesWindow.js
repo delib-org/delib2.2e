@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class MessagesWindow extends Component {
   render() {
     return (
-      <div className="messages-window">
+      <div className="messages-window container-border">
         <div className ="row message-row">
           <div className="col l4 m6 s8">
             <div className="card-panel message-bubble left-message-bubble red lighten-2 z-depth-2 ">

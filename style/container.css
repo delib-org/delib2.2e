@@ -48,3 +48,8 @@ html {
 .container .row {
   margin: 0px;
 }
+
+.container-border {
+  border: 2px solid #e0e0e0;
+  border-radius: 2px;
+}
