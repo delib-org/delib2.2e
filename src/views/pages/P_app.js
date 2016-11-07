@@ -32,7 +32,7 @@ export default class App extends Component {
     return (
       <div className = "sub-container">
         <TopNavBar/>
-        {this.props.children}
+        {this.isActiveEntityLoading(this.props.firebaseLoading) ? <Spinner/> : this.props.children}
       </div>
     );
   }

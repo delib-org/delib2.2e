@@ -21,5 +21,16 @@
 .message-input {
   background-color: #f8f8ff;
   border-radius: 40px;
+  border-radius: 40px 0px 0px 40px;
   margin-bottom: 10px;
+  height: 66px !important;
+}
+
+.btn-send {
+  margin-top: 4.8px;
+  height: 67px;
+  border-radius: 0px 40px 40px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
