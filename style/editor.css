@@ -1,0 +1,16 @@
+.DraftEditor-toolbar{
+    direction: rtl;
+    padding: 1% 0;
+
+}
+.DraftEditor-toolbar button{
+    border:none;
+    margin: 3px;
+}
+.DraftEditor-toolbar button:last-child{
+    margin: 0;
+}
+.DraftEditor-root{
+    background-color: ghostwhite;
+    border: 1px solid lightgrey;
+}
