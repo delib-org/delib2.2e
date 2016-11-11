@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 
 class MessagesWindow extends Component {
+
+  ComponentWillUpdate() {
+
+  }
+
   render() {
     return (
       <div className="messages-window container-border">

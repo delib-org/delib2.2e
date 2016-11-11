@@ -1,14 +1,14 @@
 import initialState from './initialState';
 import {
-    UPDATE_GROUP,
-    CLEAN_GROUPS
+    LISTEN_TO_CHATROOOM,
+    SEND_MESSAGE
 } from '../../constants';
 
 export default function(state = initialState.groups, action) {
     switch(action.type) {
-        case UPDATE_GROUP:
+        case LISTEN_TO_CHATROOOM:
             return {...state, ...action.payload};
-        case CLEAN_GROUPS:
+        case SEND_MESSAGE:
             return {};
         default:
             return state;

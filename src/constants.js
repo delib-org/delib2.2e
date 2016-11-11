@@ -19,6 +19,11 @@ export const UPDATE_ENTITY = {
 export const FIREBASE_LOADING = "FIREBASE_LOADING";
 export const FIREBASE_LOADING_FINISHED = "FIREBASE_LOADING_FINISHED";
 
+// chat reducer
+export const FETCH_CHATROOOM = "FETCH_CHATROOOM";
+export const MESSAGE_SENT = "MESSAGE_SENT";
+export const CHAT_ROOM_VOLUME = 20;
+
 // entity List componenet
 export const SCROLL_UP = "SCROLL_UP";
 export const SCROLL_DOWN = "SCROLL_DOWN";

@@ -6,11 +6,9 @@ export default {
   },
   groups: {},
   questions: {},
-
+  chatRoom: {},
   firebaseLoading: {
     type: "ACTIVE_ENTITY",
     isLoading: true
   }
-
-
 }
