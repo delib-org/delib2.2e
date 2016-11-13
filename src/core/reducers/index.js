@@ -3,7 +3,7 @@ import GroupsReducer from './R_groups';
 import QuestionsReducer from './R_questions';
 import ActiveEntityReducer from './R_activeEntity';
 import firebaseLoadingReducer from './R_fireBaseLoading';
-import chatRoomReducer from './R_chatRoom';
+// import chatRoomReducer from './R_chatRoom';
 import LoginReducer from './R_login';
 import { reducer as formReducer } from 'redux-form'
 
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   groups: GroupsReducer,
   questions: QuestionsReducer,
   firebaseLoading: firebaseLoadingReducer,
-  chatRoom: chatRoomReducer,
+  // chatRoom: chatRoomReducer,
   login: LoginReducer,
   form: formReducer
 });

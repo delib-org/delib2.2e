@@ -5,7 +5,7 @@ import {
     LOGOUT,
     LOGOUT_ERROR,
     LOGOUT_SUCCESS
-} from '../constants';
+} from '../../constants';
 
 
 export function sendLoginError(err) {

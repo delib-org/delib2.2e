@@ -3,7 +3,7 @@ import { reduxForm } from 'redux-form';
 import _ from 'lodash';
 
 import Error from '../components/utilComponents/uCMP_Error.jsx';
-import "../css/Login.css";
+import "../style/login.css";
 import { LOGIN_FORM_FIELDS } from "../../constants.js";
 
 class LoginForm extends React.Component {
