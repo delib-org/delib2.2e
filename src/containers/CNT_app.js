@@ -1,14 +1,20 @@
 import React from 'react';
-import App from '../views/pages/P_app'
 import { connect } from 'react-redux';
-import { listenToActiveEntity } from '../core/actions/AC_entities';
+
+import App from '../views/pages/P_app.jsx'
+import { firebaseInit } from '../core/actions/AC_firebase.js';
+import { logout, verifyAuth } from '../core/actions/AC_login.js';
 
 //set loading entites state, and active entity uid as props
 function mapStateToProps(state) {
-  return {
-    firebaseLoading: state.firebaseLoading,
-    activeEntityUid: state.activeEntity.entity.uid
+  console.log(state.app);
+    return {
+      ...state.app
   };
 }
 
-export default connect(mapStateToProps, {listenToActiveEntity})(App);
+export default connect(mapStateToProps, {
+    firebaseInit,
+    verifyAuth,
+    logout
+})(App);

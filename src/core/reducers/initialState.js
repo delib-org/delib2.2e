@@ -6,18 +6,24 @@ export default {
   },
   groups: {},
   questions: {},
-
   firebaseLoading: {
     type: "ACTIVE_ENTITY",
     isLoading: true
   },
   login: {
-    tryCount: 0
-    , loggedIn: false
-    , redirect: false
-    , userCred: null
-    , error: null
+    tryCount: 0,
+    loggedIn: false,
+    redirect: false,
+    userCred: null,
+    error: null
+  },
+  user: {
+    userName: "",
+    email: "",
+    lastEnternceDate: ""
+  },
+  firebase: {
+    App: null,
+    rootDB: null
   }
-
-
 }

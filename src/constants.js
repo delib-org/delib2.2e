@@ -20,19 +20,26 @@ export const FIREBASE_LOADING = "FIREBASE_LOADING";
 export const FIREBASE_LOADING_FINISHED = "FIREBASE_LOADING_FINISHED";
 // ==================================
 
-//Login
-//===== Login Reducer Actions
+//App Actions
+export const FIREBASE_INIT_ALL = "FIREBASE_INIT_ALL";
+
+// //User Actions
+export const UPDATE_USER = "UPDATE_USER";
+export const FETCH_USER = "FETCH_USER";
+//
+// //Login Page Actions
 
 export const LOGIN_TRY = "LOGIN_TRY";
 export const LOGIN_ERROR = "LOGIN_ERROR";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_SUCCESS_REDIRECTED = "LOGIN_SUCCESS_REDIRECTED";
 
 export const LOGOUT = "LOGOUT_TRY";
 export const LOGOUT_ERROR = "LOGOUT_ERROR";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
 
-//===== Login form FIELDS
+// FORMS FIELDS
 export const LOGIN_FORM_FIELDS = {
   email: {
     type: 'input',
@@ -43,7 +50,7 @@ export const LOGIN_FORM_FIELDS = {
     label: 'הכנס סיסמא'
   },
 };
-// ==================================
+
 
 // chat reducer
 export const FETCH_CHATROOOM = "FETCH_CHATROOOM";

@@ -3,6 +3,7 @@ import {
     LOGIN_TRY,
     LOGIN_ERROR,
     LOGIN_SUCCESS,
+    LOGIN_SUCCESS_REDIRECTED,
     LOGOUT_TRY,
     LOGOUT_ERROR,
     LOGOUT_SUCCESS,
@@ -25,15 +26,19 @@ export default function(state = initialState.login, action) {
         , redirect: action.payload.redirect
         , userCred: action.payload.userCred
       };
-    case LOGOUT_TRY:
-      return {...state, tryCount: action.payload};
+      case LOGIN_SUCCESS_REDIRECTED:
+      return {...state, 
+        redirect: action.payload.redirect
+      };
     case LOGOUT_ERROR:
       return {...state, tryCount: action.payload};
     case LOGOUT_SUCCESS:
-      return {...state, tryCount: action.payload};
+      return {...state,
+        loggedIn: action.payload.loggedIn
+        , redirect: action.payload.redirect
+        , userCred: action.payload.userCred
+      };
     default:
       return state;
   }
-
-
 }

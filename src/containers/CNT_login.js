@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login, logout, verifyAuth } from '../core/actions/AC_login.js';
+import { login } from '../core/actions/AC_login.js';
 import Login from '../views/pages/P_login.jsx'
 
 //set loading entites state, and active entity uid as props
 function mapStateToProps(state) {
 
+    console.log(state.login);
     return {
         tryCount: state.login.tryCount
         , loggedIn: state.login.loggedIn
@@ -16,6 +17,4 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
     login,
-    logout,
-    verifyAuth
 })(Login);

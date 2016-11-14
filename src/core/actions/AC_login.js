@@ -4,46 +4,48 @@ import {
     LOGIN_TRY,
     LOGOUT,
     LOGOUT_ERROR,
-    LOGOUT_SUCCESS
+    LOGOUT_SUCCESS,
 } from '../../constants';
 
 
 export function sendLoginError(err) {
-    console.log(err);
     return {
-        type: LOGIN_ERROR
-        , payload: err
-    };
-}
-
-export function loginSuccessRedirect(userCred) {
-    console.log(userCred);
-    return {
-        type: LOGIN_SUCCESS
-        , payload: {
-            loggedIn: true
-            , redirect: true
-            , credentials: userCred,
-
-        }
+        type: LOGIN_ERROR,
+        payload: err
     };
 }
 
 export function sendLogoutError(err) {
     return {
-        type: LOGOUT_ERROR,
+        type: LOGOUT_ERROR ,
         payload: {
-            loggedIn: false
-            , error: err
+            loggedIn: false,
+            error: err
         }
     };
 }
 
+export function loginSuccessRedirect(userCred, redirected) {
+    console.log(userCred, redirected);
+    if (redirected)
+        return {
+            type: LOGIN_SUCCESS,
+            payload: {
+                loggedIn: true,
+                redirect: redirected,
+                credentials: userCred,
+            }
+        };
+}
 
-export function logoutSuccessRedirect(goodbye) {
+export function logoutSuccessRedirect(redirected) {
     return {
-        type: LOGOUT_SUCCESS
-        , payload: goodbye
+        type: LOGOUT_SUCCESS,
+        payload: {
+            loggedIn: false,
+            redirect: redirected,
+            credentials: null,
+        }
     };
 }
 
@@ -52,20 +54,18 @@ export function logout() {
         var App = getState().firebase.App;
 
         App.auth().signOut().then(function() {
-            logoutSuccessRedirect(true);
+            logoutSuccessRedirect('Login');
         }, function(err) {
             sendLogoutError(err);
         });
 
         return {
-            type: LOGOUT,
-            payload: err
+            type: LOGOUT
         };
     }
 }
 
 export function login() {
-
     return (dispatch, getState) => {
         var App = getState().firebase.App;
         var loginForm = getState().form.login;
@@ -74,7 +74,10 @@ export function login() {
 
         App.auth().signInWithEmailAndPassword(email, password).then(
             (userCred) => {
-                dispatch(loginSuccessRedirect(userCred))
+                console.log('redirected');
+                dispatch(loginSuccessRedirect(userCred, 'Home'));
+                console.log('redirected');
+                dispatch(loginSuccessRedirect(null, null));
             }).catch((err) => {
                 dispatch(sendLoginError(err))
             });
@@ -90,12 +93,16 @@ export function verifyAuth() {
     return (dispatch, getState) => {
         var App = getState().firebase.App;
 
-        App.auth().onAuthStateChanged(userCred => {
-            if (userCred) {
-                dispatch(loginSuccessRedirect(userCred));
-            } else {
-                dispatch(logout());
-            }
-        });
+        App.auth().onAuthStateChanged(
+            (userCred) => {
+                if (userCred) {
+                    console.log('redirected');
+                    dispatch(loginSuccessRedirect(userCred, 'Home'));
+                    console.log('redirected');
+                    dispatch(loginSuccessRedirect(null, null));
+                } else {
+                    dispatch(logoutSuccessRedirect('Login'));
+                }
+            });
     }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TopNavBar from '../components/CMP_topNavBar';
-import Spinner from '../../views/components/CMP_spinner';
+import Spinner from '../components/CMP_spinner';
 
 
 export default class App extends Component {
