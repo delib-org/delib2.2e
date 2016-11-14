@@ -1,5 +1,5 @@
 import {
-    FETCH_CHATROOOM,
+    FETCH_LAST_MESSAGE,
     MESSAGE_SENT,
     CHAT_ROOM_VOLUME
 } from '../../constants';
@@ -8,25 +8,25 @@ import {DB} from '../../firebase/firebase';
 
 export function fetchChatRoom() {
     return (dispatch, getState) => {
-        var ref = DB.child("/chatRooms/"+getState().activeEntity.uid);
+        var ref = DB.child("/chatRooms/" + getState().activeEntity.uid);
 
-        if(!ref) {
-            ref.child('entity').set({
+        if (!ref) {
+            ref.child("/chatRooms/" + getState().activeEntity.uid +'entity').set({
                 title: getState().activeEntity,
                 entityType: getState().activeEntity.entity.title,
             });
 
-        ref.child('messages').limitToLast(CHAT_ROOM_VOLUME).on('child_added', (message)=> {
-            var messageJson = message.val();
+            ref.child('messages').limitToLast(CHAT_ROOM_VOLUME).on('child_added', (message)=> {
+                var messageJson = message.val();
 
-            dispatch({
-                type: FETCH_CHATROOOM,
-                payload: messageJson
+                dispatch({
+                    type: FETCH_LAST_MESSAGE,
+                    payload: messageJson
+                });
             });
-        });
+        }
     }
 }
-
 export function sendMessage(message) {
 
     return (dispatch, getState) => {
@@ -42,8 +42,9 @@ export function sendMessage(message) {
             });
         }
 
-        return {
+        dispatch({
             type: MESSAGE_SENT
-        };
+        });
+
     }
 }

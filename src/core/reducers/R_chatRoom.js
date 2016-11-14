@@ -1,15 +1,15 @@
 import initialState from './initialState';
 import {
-    LISTEN_TO_CHATROOOM,
+    FETCH_LAST_MESSAGE,
     SEND_MESSAGE
-} from '../../constants';
+} from '../../constants.js';
 
-export default function(state = initialState.groups, action) {
+export default function(state = initialState.chatRoom, action) {
     switch(action.type) {
-        case LISTEN_TO_CHATROOOM:
+        case FETCH_LAST_MESSAGE:
             return {...state, ...action.payload};
         case SEND_MESSAGE:
-            return {};
+            return {...state};
         default:
             return state;
     }

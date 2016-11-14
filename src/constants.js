@@ -13,14 +13,14 @@ export const LOADING_ACTIVE_ENTITY_FINISHED =  "LOADING_ACTIVE_ENTITY_FINISHED";
 export const UPDATE_ENTITY = {
   groups: UPDATE_GROUP,
   questions: UPDATE_QUESTION
-}
+};
 
 //firebase loading actions
 export const FIREBASE_LOADING = "FIREBASE_LOADING";
 export const FIREBASE_LOADING_FINISHED = "FIREBASE_LOADING_FINISHED";
 
 // chat reducer
-export const FETCH_CHATROOOM = "FETCH_CHATROOOM";
+export const FETCH_LAST_MESSAGE = "FETCH_LAST_MESSAGE";
 export const MESSAGE_SENT = "MESSAGE_SENT";
 export const CHAT_ROOM_VOLUME = 20;
 
@@ -34,7 +34,7 @@ export const resetLazyLoadState = {
   numberToLoad: 9,
   elementsToLoadHeight: 756,
   currLoadedSubEntities: []
-}
+};
 export const entityListViewConfig = {
   groups: {
     avatar: "group",
