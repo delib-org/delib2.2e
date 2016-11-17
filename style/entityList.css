@@ -1,10 +1,11 @@
-
+.entity-ul, .entity-grid {
+  overflow: scroll;
+  height: calc(100% - 120px)
+}
 
 /* Entity List (for groups, questions etc..)*/
 .entity-ul{
   margin-top: -7px;
-  overflow: scroll;
-  height: calc(100% - 120px);
 }
 
 /*pull avatar right on list*/
@@ -55,7 +56,24 @@
   }
 }
 
-
 ::-webkit-scrollbar {
     display: none;
+}
+
+
+.entity-grid-avatar {
+  height: 90px;
+  width: 118px;
+  color: #0a545c;
+}
+
+.entity-grid-avatar:hover, .entity-grid-avatar:focus {
+  background-color: rgba(0,0,0,0.1);
+}
+
+
+.entity-grid-thumbnail {
+  margin-bottom: 8px;
+  width: 118px;
+  display: inline-block;
 }

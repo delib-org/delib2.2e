@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import TopNavBar from '../components/CMP_topNavBar';
 import Spinner from '../../views/components/CMP_spinner';
+import { default as TouchBackend } from 'react-dnd-touch-backend';
+import { DragDropContext } from 'react-dnd';
 
-
-export default class App extends Component {
+class App extends Component {
   //return entity type by link bar path (exmple /groups/-ABCDEFG123 will return groups)
   getEntityTypeFromLinkPath(linkPath) {
     const entityType =  linkPath.substr(linkPath.indexOf("/")+1, linkPath.indexOf("/-")-1);
@@ -37,5 +38,7 @@ export default class App extends Component {
     );
   }
 }
+
+export default DragDropContext(TouchBackend({ enableMouseEvents: true }))(App);
 
 // {this.isActiveEntityLoading(this.props.firebaseLoading) ? <Spinner/> : this.props.children}

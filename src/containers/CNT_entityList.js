@@ -1,4 +1,4 @@
-import EntityList from '../views/components/CMP_entityList';
+import EntityList from '../views/components/entitiesExplorer/listView/CMP_entityList';
 import SubEntitiesSelector from '../core/selectors/SL_subEntitiesSelector';
 import { listenToEntitesByList, stopListenToEntitiesByList, clearAllEntities } from '../core/actions/AC_entities';
 import { connect } from 'react-redux';

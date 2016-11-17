@@ -8,6 +8,8 @@ import App from './views/pages/P_app';
 import reducers from './core/reducers';
 import ReduxThunk from 'redux-thunk';
 import ReduxPromise from 'redux-promise';
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
 
 // const createStoreWithMiddleware = applyMiddleware(ReduxThunk, promiseMiddleware)(createStore);
 

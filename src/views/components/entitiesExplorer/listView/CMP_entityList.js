@@ -1,11 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import _ from 'lodash';
-import Spinner from './CMP_spinner';
+import Spinner from '../../CMP_spinner';
 import { entityListViewConfig,
          resetLazyLoadState,
          SCROLL_UP,
          SCROLL_DOWN
-       } from '../../constants';
+       } from '../../../../constants';
 
 class EntityList extends Component
 {
