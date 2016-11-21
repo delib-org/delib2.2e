@@ -6,7 +6,6 @@ import Login from '../views/pages/P_login.jsx'
 //set loading entites state, and active entity uid as props
 function mapStateToProps(state) {
 
-    console.log(state.login);
     return {
         tryCount: state.login.tryCount
         , loggedIn: state.login.loggedIn

@@ -1,17 +1,19 @@
 
-import { getDataBaseRoot, init } from '../../firebase/firebase';
+import { getDataBaseRoot, init, getLib } from '../../firebase/firebase';
 import {
-    FIREBASE_INIT_ALL
+    FIREBASE_INIT_ALL,
+    FIREBASE_LOADING,
+    FIREBASE_LOADING_FINISHED
   } from '../../constants';
 
 // Start the app and get dataBase root
 var initAndGetRoot = ()=> {
     var firebaseApp = init();
 
-    console.log(firebaseApp);
     return {
         App: firebaseApp,
-        rootDB: getDataBaseRoot(firebaseApp)
+        rootDB: getDataBaseRoot(firebaseApp),
+        library: getLib()
     };
 };
 
@@ -21,4 +23,17 @@ export function firebaseInit() {
       type: FIREBASE_INIT_ALL,
       payload: initAndGetRoot()
     };
+}
+
+export function firebaseLoading(loadingType) {
+    return {
+        type: FIREBASE_LOADING,
+        payload: loadingType
+    }
+}
+
+export function firebaseLoadingFinished() {
+    return {
+        type: FIREBASE_LOADING_FINISHED
+    }
 }

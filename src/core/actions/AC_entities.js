@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import {DB} from '../../firebase/firebase';
 import {
   UPDATE_ACTIVE_ENTITY,
   UPDATE_ENTITY,
@@ -9,7 +8,7 @@ import {
   CLEAN_GROUPS
   } from '../../constants';
 
-import {firebaseLoading, firebaseLoadingFinished} from './AC_firebaseLoading';
+import {firebaseLoading, firebaseLoadingFinished} from './AC_firebase';
 
 
 export function updateActiveEntity(payload) {
@@ -41,9 +40,14 @@ export function updateEntity(entityType, entityUid, payload) {
 }
 
 export function listenToActiveEntity(entityType, entityUid) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+
+      if(!(entityUid || entityType))
+          return;
+
+    var baseRef = getState().firebase.rootDB;
     dispatch(firebaseLoading("ACTIVE_ENTITY"));
-    DB.child(entityType).child(entityUid).on("value", (snapshot) => {
+    baseRef.child(entityType).child(entityUid).on("value", (snapshot) => {
       let activeEntity = snapshot.val();
       let subEntitiesArray = _.values(
         _.mapKeys(activeEntity.subEntities, function(value, key) { value.uid = key; return key; })
@@ -58,11 +62,13 @@ export function listenToActiveEntity(entityType, entityUid) {
 }
 
 export function listenToEntitesByList(entities) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+
+    var baseRef = getState().firebase.rootDB;
     if(entities.length != 0)
       dispatch(firebaseLoading("SUB_ENTITIES"));
     entities.forEach(({entityType, uid}) => {
-      DB.child(entityType).child(uid).on("value", (snapshot) => {
+      baseRef.child(entityType).child(uid).on("value", (snapshot) => {
         if(snapshot.val()) {
           dispatch(updateEntity(entityType, uid, {[uid]: snapshot.val()}))
         }
@@ -73,9 +79,11 @@ export function listenToEntitesByList(entities) {
 }
 
 export function stopListenToEntitiesByList(entities) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+
+    var baseRef = getState().firebase.rootDB;
     entities.forEach(({entityType, uid}) => {
-      DB.child(entityType).child(uid).off('value');
+      baseRef.child(entityType).child(uid).off('value');
     });
   }
 }

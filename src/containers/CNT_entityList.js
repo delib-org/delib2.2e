@@ -8,7 +8,7 @@ function mapStateToProps(state) {
   return {
     activeEntity: state.activeEntity,
     allSubEntities: SubEntitiesSelector(state),
-    firebaseLoading: state.firebaseLoading
+    firebase: state.firebase
   };
 }
 

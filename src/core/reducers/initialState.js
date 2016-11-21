@@ -6,9 +6,11 @@ export default {
   },
   groups: {},
   questions: {},
-  firebaseLoading: {
+  firebase: {
     type: "ACTIVE_ENTITY",
-    isLoading: true
+    isLoading: true,
+    App: null,
+    rootDB: null
   },
   login: {
     tryCount: 0,
@@ -22,8 +24,4 @@ export default {
     email: "",
     lastEnternceDate: ""
   },
-  firebase: {
-    App: null,
-    rootDB: null
-  }
 }

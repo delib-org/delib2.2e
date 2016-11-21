@@ -1,52 +1,39 @@
 import {
-    LOGIN_ERROR,
-    LOGIN_SUCCESS,
-    LOGIN_TRY,
-    LOGOUT,
-    LOGOUT_ERROR,
-    LOGOUT_SUCCESS,
+  LOGIN_TRY,
+  REDIRECT,
+  REDIRECTED,
 } from '../../constants';
+// import './AC_alertMessage';
 
 
-export function sendLoginError(err) {
-    return {
-        type: LOGIN_ERROR,
-        payload: err
-    };
-}
+export function redirectTo(route, userCred) {
+    return (dispatch) => {
+        if(userCred)
+            dispatch({
+                type: REDIRECT,
+                payload: {
+                    loggedIn: true,
+                    redirect: route,
+                    userCred,
+                }
+            });
+        else
+            dispatch({
+                type: REDIRECT,
+                payload: {
+                    loggedIn: false,
+                    redirect: route,
+                    userCred,
+                }
+            });
 
-export function sendLogoutError(err) {
-    return {
-        type: LOGOUT_ERROR ,
-        payload: {
-            loggedIn: false,
-            error: err
-        }
-    };
-}
-
-export function loginSuccessRedirect(userCred, redirected) {
-    console.log(userCred, redirected);
-    if (redirected)
-        return {
-            type: LOGIN_SUCCESS,
+        dispatch({
+            type: REDIRECTED,
             payload: {
-                loggedIn: true,
-                redirect: redirected,
-                credentials: userCred,
+                redirect: null
             }
-        };
-}
-
-export function logoutSuccessRedirect(redirected) {
-    return {
-        type: LOGOUT_SUCCESS,
-        payload: {
-            loggedIn: false,
-            redirect: redirected,
-            credentials: null,
-        }
-    };
+        });
+    }
 }
 
 export function logout() {
@@ -54,33 +41,58 @@ export function logout() {
         var App = getState().firebase.App;
 
         App.auth().signOut().then(function() {
-            logoutSuccessRedirect('Login');
+            redirectTo('login', null);
         }, function(err) {
-            sendLogoutError(err);
+            // showAlert(err);
         });
-
-        return {
-            type: LOGOUT
-        };
     }
 }
 
-export function login() {
-    return (dispatch, getState) => {
-        var App = getState().firebase.App;
-        var loginForm = getState().form.login;
-        var email = loginForm.email.value;
-        var password = loginForm.password.value;
 
-        App.auth().signInWithEmailAndPassword(email, password).then(
-            (userCred) => {
-                console.log('redirected');
-                dispatch(loginSuccessRedirect(userCred, 'Home'));
-                console.log('redirected');
-                dispatch(loginSuccessRedirect(null, null));
-            }).catch((err) => {
-                dispatch(sendLoginError(err))
+export function login(loginType) {
+    return (dispatch, getState) => {
+        const App = getState().firebase.App;
+        const loginForm = getState().form.login;
+        const email = loginForm.email.value;
+        const password = loginForm.password.value;
+        const firebaseLib = getState().firebase.library;
+
+        switch(loginType){
+            case "email&password":
+                App.auth().signInWithEmailAndPassword(email, password).then(
+              (userCred) => {
+                  dispatch(redirectTo('/home', userCred));
+              }).catch((err) => {
+                // dispatch(showAlert(err))
             });
+                break;
+
+            case "google":
+
+                console.dir(App.auth);
+                const googleProvider = new firebaseLib.auth.GoogleAuthProvider();
+                App.auth().signInWithPopup(googleProvider).then(function(userCred) {
+                    // // This gives you a Google Access Token. You can use it to access the Google API.
+                    // var token = result.credential.accessToken;
+                    // // The signed-in user info.
+                    // var user = result.user;
+                    // // ...
+                    dispatch(redirectTo('/home', userCred));
+
+                }).catch(function(error) {
+                    // Handle Errors here.
+                    // var errorCode = error.code;
+                    // var errorMessage = error.message;
+                    // // The email of the user's account used.
+                    // var email = error.email;
+                    // // The firebase.auth.AuthCredential type that was used.
+                    // var credential = error.credential;
+                    // // ...
+
+
+                    // dispatch(showAlert(err))
+                });
+        }
 
         dispatch({
             type: LOGIN_TRY,
@@ -89,19 +101,17 @@ export function login() {
     }
 }
 
+
 export function verifyAuth() {
     return (dispatch, getState) => {
-        var App = getState().firebase.App;
+        const App = getState().firebase.App;
 
         App.auth().onAuthStateChanged(
             (userCred) => {
                 if (userCred) {
-                    console.log('redirected');
-                    dispatch(loginSuccessRedirect(userCred, 'Home'));
-                    console.log('redirected');
-                    dispatch(loginSuccessRedirect(null, null));
+                    dispatch(redirectTo('home',userCred));
                 } else {
-                    dispatch(logoutSuccessRedirect('Login'));
+                    dispatch(redirectTo('login', null));
                 }
             });
     }

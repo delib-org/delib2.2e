@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from "react";
 import { reduxForm } from 'redux-form';
 import _ from 'lodash';
 
-import "../css/Login.css";
+import "../style/login.css";
 import { LOGIN_FORM_FIELDS } from "../../constants.js";
 
 class LoginForm extends React.Component {
@@ -33,6 +33,7 @@ class LoginForm extends React.Component {
             </div>
         );
     }
+
     render() {
         const { handleSubmit } = this.props;
 
@@ -49,7 +50,7 @@ class LoginForm extends React.Component {
                         <div className="container">
                             <div className="z-depth-1 grey lighten-4 row" id="main-card">
 
-                                <form className="col s12" method="post" onSubmit={handleSubmit(this.props.login)}>
+                                <form className="col s12" method="post">
                                     <div className='row'>
                                         <div className='col s12'>
                                         </div>
@@ -65,9 +66,15 @@ class LoginForm extends React.Component {
                                     <center>
                                         <div className='row'>
                                             <button
-                                                type="submit"
                                                 name='btn_login' className='col s12 btn btn-large waves-effect indigo'
+                                                onClick={handleSubmit(()=> {this.props.login('email&password')})}
                                             >Login</button>
+                                        </div>
+                                        <div className='row'>
+                                            <button
+                                              name='btn_login' className='col s12 btn btn-large waves-effect indigo'
+                                              onClick={handleSubmit(()=> {this.props.login('google')})}
+                                            >Google Login</button>
                                         </div>
                                     </center>
                                 </form>

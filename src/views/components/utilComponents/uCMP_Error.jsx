@@ -4,34 +4,41 @@ class Error extends React.Component {
 
     constructor(){
         super();
+
+        this.state= {
+            errorMessageHebrew: ""
+        };
     }
 
-    renderToast() {
-        return (
-            <div id="card-alert" className="card deep-purple">
-                <div className="card-content white-text">
-                    <span className="card-title white-text darken-1">Some Message</span>
-                    <p></p>
-                </div>
-                <div className="card-action deep-purple darken-2">
-                    <a className="waves-effect waves-light  btn white-text">Ok</a>
-                    <a className="waves-effect waves-light  btn white-text">Cancel</a>
-                </div>
-                <button type="button" className="close white-text" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-        );
+    componentDidUpdate() {
+        if(typeof this.props.error === Object) {
+
+            console.log(this.props.error);
+            var errorCode = this.props.error.code;
+            switch (errorCode) {
+                case 'auth/wrong-password':
+                    this.state.errorMessageHebrew = 'סיסמא שגוייה, נסה שנית';
+                    break;
+                case 'auth/user-not-found':
+                    this.state.errorMessageHebrew = 'המשתמש איננו קיים במערכת';
+                    break;
+                case 'auth/argument-error':
+                    this.state.errorMessageHebrew = 'נא הכנס פרטי משתמש תקינים';
+                    break;
+                default:
+                    this.state.errorMessageHebrew = 'שגיאה לא ידועה';
+            }
+
+            Materialize.toast(this.state.errorMessageHebrew, 6000, 'rounded amber ');
+        }
     }
+
 
     render() {
-        // var temp = ;
-        if(this.props.error) {
-            this.renderToast();
-            // var $toastContent = $(temp);
-            // Materialize.toast($toastContent, 6000);
-        }
+        return (null);
     }
 }
 
+
 export default Error;
+

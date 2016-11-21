@@ -7,9 +7,9 @@ import { logout, verifyAuth } from '../core/actions/AC_login.js';
 
 //set loading entites state, and active entity uid as props
 function mapStateToProps(state) {
-  console.log(state.app);
     return {
-      ...state.app
+        ...state.login,
+        ...state.firebase
   };
 }
 

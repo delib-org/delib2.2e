@@ -85,7 +85,7 @@ class EntityList extends Component
     const { allSubEntities } = this.props;
 
     //show a spinner only if sub entities are loading and there are still no sub entites rendered
-    if(this.props.firebaseLoading.type == "SUB_ENTITIES" && this.props.firebaseLoading.isLoading && allSubEntities.length == 0)
+    if(this.props.firebase.type == "SUB_ENTITIES" && this.props.firebase.isLoading && allSubEntities.length == 0)
       return <Spinner/>
 
     //if its not loading but the array is still emptey, then there are no sub entities for this particular active entity
